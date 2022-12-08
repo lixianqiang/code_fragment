@@ -1,0 +1,3 @@
+[submodule "mpc/casadi"]
+	path = mpc/casadi
+	url = https://github.com/casadi/casadi.git
