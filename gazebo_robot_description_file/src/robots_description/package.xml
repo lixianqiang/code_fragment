@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robots_description</name>
+  <version>0.0.1</version>
+  <description>
+    URDF and meshes describing my custom robot.
+  </description>
+
+  <license>BSD</license>
+  <author>Li XianQiang</author>
+  <maintainer email="lxq243808918@gmail.com">Lxq</maintainer>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+</package>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot name="kobuki_standalone" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find robots_description)/model/chassis/yujin/urdf/yujin-Kobuki.urdf.xacro" />
+
+  <yujin-kobuki/>
+</robot>

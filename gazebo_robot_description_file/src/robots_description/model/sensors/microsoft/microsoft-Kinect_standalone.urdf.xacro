@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot name="microsoft-Kinect_standalone" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find robots_description)/model/sensors/microsoft/urdf/kinect.urdf.xacro"/>
+  <xacro:arg name="robot" default=""/>
+
+  <link name="base_link" />
+
+  <joint name="$(arg robot)/microsoft_kinect_01_joint" type="fixed">
+    <origin xyz="-0.118 -1 0.271" rpy="0 0 0"/>
+  	<parent link="base_link"/>
+    <child link="$(arg robot)/microsoft_kinect_01"/>
+  </joint>
+  <xacro:microsoft-kinect model_id="$(arg robot)/microsoft_kinect_01" />
+
+  <joint name="$(arg robot)/microsoft_kinect_02_joint" type="fixed">
+    <origin xyz="-0.118 1 0.271" rpy="0 0 0"/>
+  	<parent link="base_link"/>
+    <child link="$(arg robot)/microsoft_kinect_02"/>
+  </joint>
+  <xacro:microsoft-kinect model_id="$(arg robot)/microsoft_kinect_02" />	
+
+</robot>

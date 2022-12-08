@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot name="turtlebot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find robots_description)/model/chassis/yujin/urdf/yujin-Kobuki.urdf.xacro" />
+  <xacro:include filename="$(find robots_description)/model/robots/turtlebot/stacks/hexagons.urdf.xacro"/>
+  <xacro:include filename="$(find robots_description)/model/sensors/microsoft/urdf/kinect.urdf.xacro"/>
+  <xacro:include filename="$(find robots_description)/model/sensors/velodyne/urdf/velodyne-VLP16.urdf.xacro"/>
+  <xacro:include filename="$(find robots_description)/model/sensors/velodyne/urdf/velodyne-HDL32E.urdf.xacro"/>
+
+  <xacro:arg name="robot" default=""/>
+
+  <yujin-kobuki/>
+
+  <joint name="stack_hexagons_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="stack_hexagons"/>
+  </joint> 
+  <turtlebot-body model_id="stack_hexagons"/>
+
+<!--   <joint name="$(arg robot)/microsoft_kinect_joint" type="fixed">
+    <origin xyz="-0.118 0 0.271" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="$(arg robot)/microsoft_kinect"/>
+  </joint>
+  <microsoft-kinect model_id="$(arg robot)/microsoft_kinect"/> -->
+  
+  <joint name="$(arg robot)/velodyne_VLP16_01_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="$(arg robot)/velodyne_VLP16_01" />
+    <origin xyz="0 0 0.4" rpy="0 0 0" />
+  </joint>
+  <xacro:velodyne-VLP16 model_id="$(arg robot)/velodyne_VLP16_01" topic="$(arg robot)/velodyne_VLP16_01/laser_scan" />
+
+</robot>

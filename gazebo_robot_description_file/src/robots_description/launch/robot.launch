@@ -1,0 +1,26 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find robots_description)/model/robots/turtlebot/turtlebot_standalone.urdf.xacro'"/> 
+
+  <!-- https://github.com/ros-simulation/gazebo_ros_pkgs/blob/kinetic-devel/gazebo_ros/scripts/spawn_model#L51 -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model robo1 -param robot_description -x 0 -y 0 -z 0"/>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+    <param name="publish_frequency" type="double" value="5.0"/>
+  </node>
+  
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="false"/>
+  </node>
+
+    <!-- Start gazebo and load the world -->
+  <arg name="world_name" default="$(find robots_description)/world/example.world"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" default="false"/>
+    <arg name="world_name" value="$(arg world_name)"/>
+  </include>
+
+ <!-- RViz -->
+  <arg name="rviz" default="true"/>
+  <node if="$(arg rviz)" pkg="rviz" type="rviz" name="$(anon rviz)" respawn="false" output="screen" />
+
+</launch>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot name="velodyne-VLP16_standalone" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find robots_description)/model/sensors/velodyne/urdf/velodyne-VLP16.urdf.xacro"/>
+  <xacro:arg name="robot" default=""/>
+
+  <link name="base_link"/>
+  
+  <joint name="$(arg robot)/velodyne_VLP16_01_joint" type="fixed">
+    <origin xyz="1 1 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="$(arg robot)/velodyne_VLP16_01" />
+  </joint>
+  <xacro:velodyne-VLP16 model_id="$(arg robot)/velodyne_VLP16_01" topic="$(arg robot)/velodyne_VLP16_01/laser_scan" />
+
+  <joint name="$(arg robot)/velodyne_VLP16_02_joint" type="fixed">
+    <origin xyz="-1 -1 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="$(arg robot)/velodyne_VLP16_02" />
+  </joint>
+  <xacro:velodyne-VLP16 model_id="$(arg robot)/velodyne_VLP16_02" topic="$(arg robot)/velodyne_VLP16_02/laser_scan" />
+
+
+</robot>

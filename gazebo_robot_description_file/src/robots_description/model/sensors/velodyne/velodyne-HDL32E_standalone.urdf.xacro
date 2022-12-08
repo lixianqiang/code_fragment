@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot name="velodyne-HDL32E_standalone" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find robots_description)/model/sensors/velodyne/urdf/velodyne-HDL32E.urdf.xacro"/>
+  
+  <xacro:arg name="robot" default=""/>
+
+  <link name="base_link"/>
+  
+  <joint name="$(arg robot)/velodyne_HDL32E_01_joint" type="fixed">
+    <origin xyz="1 1 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="$(arg robot)/velodyne_HDL32E_01" />
+  </joint>
+  <xacro:velodyne-HDL32E model_id="$(arg robot)/velodyne_HDL32E_01" topic="$(arg robot)/velodyne_HDL32E_01/laser_scan" />
+
+  <joint name="$(arg robot)/velodyne_HDL32E_02_joint" type="fixed">
+    <origin xyz="-1 -1 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="$(arg robot)/velodyne_HDL32E_02" />
+  </joint>
+  <xacro:velodyne-HDL32E model_id="$(arg robot)/velodyne_HDL32E_02" topic="$(arg robot)/velodyne_HDL32E_02/laser_scan" />
+
+</robot>
